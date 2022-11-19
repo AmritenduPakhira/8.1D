@@ -1,4 +1,3 @@
-#Libraries
 import RPi.GPIO as GPIO
 import time
 from rpi_lcd import LCD
@@ -11,26 +10,16 @@ GPIO.setmode(GPIO.BOARD)
 GPIO_TRIGGER = 8
 GPIO_ECHO = 10
 
-#setting PWM Pins
-LED = 12
 
 #Setting maximum distance 
 SET_DISTANCE = 25
 
 #initialising LCD 
 
-
-#set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+GPIO.setup(GPIO_TRIGGER, GPIO.OUT) //set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
-GPIO.setup(LED, GPIO.OUT)
- 
-#set LED pin to PWM that will vary 1 to 100
-led = GPIO.PWM(LED,100)
 
-#led will start from the off position
-led.start(0)
 
 
 def distance():
