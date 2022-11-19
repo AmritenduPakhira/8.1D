@@ -3,18 +3,16 @@ import time
 from rpi_lcd import LCD
 
 lcd = LCD()
-#GPIO Mode which is set to board
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD) ////GPIO Mode which is set to board
  
-#setting GPIO Pins
-GPIO_TRIGGER = 8
+
+GPIO_TRIGGER = 8 //setting GPIO Pins
 GPIO_ECHO = 10
 
 
-#Setting maximum distance 
-SET_DISTANCE = 25
+SET_DISTANCE = 25 //Setting maximum distance 
 
-#initialising LCD 
+//initialising LCD 
 
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT) //set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
@@ -23,30 +21,27 @@ GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 
 def distance():
-    # set Trigger pin to HIGH when it will triggers a signal
-    GPIO.output(GPIO_TRIGGER, True)
+    GPIO.output(GPIO_TRIGGER, True) //  set Trigger pin to HIGH when it will triggers a signal
  
-    # set Trigger after 0.01ms to LOW that it will not trigger the signal again
-    time.sleep(0.00001)
+   
+    time.sleep(0.00001)  //  set Trigger after 0.01ms to LOW that it will not trigger the signal again
     GPIO.output(GPIO_TRIGGER, False)
  
-    #initialising two variables for time diffrence
-    StartTime = time.time()
+    StartTime = time.time() //initialising two variables for time diffrence
     StopTime = time.time()
  
-    # store StartTime
-    while GPIO.input(GPIO_ECHO) == 0:
+    
+    while GPIO.input(GPIO_ECHO) == 0: //store StartTime
         StartTime = time.time()
  
-    # store time of arrival
-    while GPIO.input(GPIO_ECHO) == 1:
+    
+    while GPIO.input(GPIO_ECHO) == 1: // store time of arrival
         StopTime = time.time()
  
-    # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
+    TimeElapsed = StopTime - StartTime ////time difference between start and arrival
 
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
+   // multiply with the sonic speed (34300 cm/s)
+    //and divide by 2, because there and back
 
     distance = (TimeElapsed * 34300) / 2
     x= int(distance)
